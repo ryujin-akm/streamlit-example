@@ -5,7 +5,7 @@ import pandas as pd
 import streamlit as st
 import subprocess
 
-# subprocess.run(['bash', 'setup.sh'])
+subprocess.run(['bash', 'setup.sh'])
 
 """
 # Welcome to Streamlit!
