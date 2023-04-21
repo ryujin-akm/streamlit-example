@@ -1,24 +1,26 @@
 import streamlit as st
-import streamlit_webrtc as webrtc
-
-def audio_processor(audio_frames):
-    # audio_frames is a list of bytes representing audio samples
-    # Here you can process the audio frames using a library of your choice,
-    # and return the transcribed text as a string.
-    return "Your transcribed text here."
+import sounddevice as sd
+import soundfile as sf
 
 def main():
     st.title("Audio Recorder and Transcriber")
-
-    webrtc_ctx = webrtc.Streamer(
-        audio=True,
-        key="audio"
-    )
-
-    if webrtc_ctx.audio_receiver:
-        audio_frames = webrtc_ctx.audio_receiver.get_frames()
-        transcribed_text = audio_processor(audio_frames)
-        st.write("Transcription: ", transcribed_text)
-
+    
+    # Display instructions
+    st.write("Click the button to start recording.")
+    
+    # Create button to start recording
+    if st.button("Record"):
+        # Record audio
+        duration = 5  # seconds
+        sample_rate = 44100  # Hz
+        channels = 2  # stereo
+        audio_file = "recording.wav"
+        myrecording = sd.rec(int(duration * sample_rate), samplerate=sample_rate, channels=channels)
+        sd.wait()
+        sf.write(audio_file, myrecording, sample_rate)
+        st.write("Recording finished.")
+        st.audio(audio_file, format='audio/wav')
+    
 if __name__ == "__main__":
     main()
+
