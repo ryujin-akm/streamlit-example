@@ -1,6 +1,4 @@
 altair
 pandas
 streamlit
-streamlit-webrtc
-sounddevice 
-soundfile
+audio-recorder-streamlit
