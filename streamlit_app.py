@@ -1,6 +1,13 @@
 import streamlit as st
-from audio_recorder_streamlit import audio_recorder
+from audiorecorder import audiorecorder
 
-audio_bytes = audio_recorder()
-if audio_bytes:
-    st.audio(audio_bytes, format="audio/wav")
+st.title("Audio Recorder")
+audio = audiorecorder("Click to record", "Recording...")
+
+if len(audio) > 0:
+    # To play audio in frontend:
+    st.audio(audio.tobytes())
+    
+    # To save audio to a file:
+    wav_file = open("audio.mp3", "wb")
+    wav_file.write(audio.tobytes())
