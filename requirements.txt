@@ -2,4 +2,8 @@ altair
 pandas
 streamlit
 SpeechRecognition
-PyAudio-0.2.11-cp37-cp37m-win_amd64.whl
+libasound-dev
+portaudio19-dev
+libportaudio2
+libportaudiocpp0
+pyaudio
