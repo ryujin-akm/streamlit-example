@@ -29,7 +29,8 @@ if len(audio) > 0:
 #     "ffmpeg", "-i", input_file, "-acodec", "pcm_s16le", "-ar", "44100",
 #     output_file
 # ])
-res = subprocess.call('ls l', shell=True)
+
+res = subprocess.call('ls -al', shell=True) 
 st.write(res)
 # convert mp3 file to wav
 sound = AudioSegment.from_mp3("audio.mp3")
