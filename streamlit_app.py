@@ -25,14 +25,14 @@ if len(audio) > 0:
     input_file = "audio.mp3"
     output_file = "transcript.wav"
 
-subprocess.run([
-    "ffmpeg", "-i", input_file, "-acodec", "pcm_s16le", "-ar", "44100",
-    output_file
-])
+# subprocess.run([
+#     "ffmpeg", "-i", input_file, "-acodec", "pcm_s16le", "-ar", "44100",
+#     output_file
+# ])
 
-# # convert mp3 file to wav
-# sound = AudioSegment.from_mp3("audio.mp3")
-# sound.export("transcript.wav", format="wav")
+# convert mp3 file to wav
+sound = AudioSegment.from_mp3("audio.mp3")
+sound.export("transcript.wav", format="wav")
 print("---------------------We are HEre--------------------")
 # transcribe audio file
 AUDIO_FILE = "transcript.wav"
