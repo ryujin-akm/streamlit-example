@@ -33,8 +33,8 @@ if len(audio) > 0:
 res = subprocess.call('ls -al', shell=True) 
 st.write(res)
 # convert mp3 file to wav
-sound = AudioSegment.from_mp3("audio.mp3")
-sound.export("transcript.wav", format="wav")
+# sound = AudioSegment.from_mp3("audio.mp3")
+# sound.export("transcript.wav", format="wav")
 print("---------------------We are HEre--------------------")
 # transcribe audio file
 AUDIO_FILE = "transcript.wav"
