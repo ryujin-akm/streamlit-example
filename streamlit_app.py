@@ -1,17 +1,43 @@
-# import streamlit as st
-# from audiorecorder import audiorecorder
+import streamlit as st
+from audiorecorder import audiorecorder
 
-# st.title("Audio Recorder")
-# audio = audiorecorder("Click to record", "Recording...")
+st.title("Audio Recorder")
+audio = audiorecorder("Click to record", "Recording...")
 
-# if len(audio) > 0:
-#     # To play audio in frontend:
-#     st.audio(audio.tobytes())
+if len(audio) > 0:
+    # To play audio in frontend:
+    st.audio(audio.tobytes())
     
-#     # To save audio to a file:
-#     wav_file = open("audio.mp3", "wb")
-#     wav_file.write(audio.tobytes())
+    # To save audio to a file:
+    wav_file = open("audio.mp3", "wb")
+    wav_file.write(audio.tobytes())
+import speech_recognition as sr
+from os import path
+from pydub import AudioSegment
+import subprocess
 
+input_file = "audio.mp3"
+output_file = "transcript.wav"
+
+subprocess.run([
+    "ffmpeg", "-i", input_file, "-acodec", "pcm_s16le", "-ar", "44100",
+    output_file
+])
+
+# # convert mp3 file to wav
+# sound = AudioSegment.from_mp3("audio.mp3")
+# sound.export("transcript.wav", format="wav")
+
+# transcribe audio file
+AUDIO_FILE = "transcript.wav"
+
+# use the audio file as the audio source
+r = sr.Recognizer()
+with sr.AudioFile(AUDIO_FILE) as source:
+    audio = r.record(source)  # read the entire audio file
+
+    print("Transcription: " + r.recognize_google(audio))
+    
 import streamlit as st
 from PIL import Image
 from PIL import Image, ImageDraw, ImageFont
