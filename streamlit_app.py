@@ -10,25 +10,25 @@ from PIL import Image, ImageDraw, ImageFont
 import yolov5
 import torch
 
-st.title("Audio Recorder")
-audio = audiorecorder("Click to record", "Recording...")
+# st.title("Audio Recorder")
+# audio = audiorecorder("Click to record", "Recording...")
 
-if len(audio) > 0:
-    # To play audio in frontend:
-    st.audio(audio.tobytes())
+# if len(audio) > 0:
+#     # To play audio in frontend:
+#     st.audio(audio.tobytes())
     
-    # To save audio to a file:
-    wav_file = open("audio.mp3", "wb")
-    wav_file.write(audio.tobytes())
-    print("---------------------We are HEre--------------------")
+#     # To save audio to a file:
+#     wav_file = open("audio.mp3", "wb")
+#     wav_file.write(audio.tobytes())
+#     print("---------------------We are HEre--------------------")
 
-input_file = "audio.mp3"
-output_file = "transcript.wav"
+# input_file = "audio.mp3"
+# output_file = "transcript.wav"
 
-subprocess.run([
-    "ffmpeg", "-i", input_file, "-acodec", "pcm_s16le", "-ar", "44100",
-    output_file
-], timeout=5)
+# subprocess.run([
+#     "ffmpeg", "-i", input_file, "-acodec", "pcm_s16le", "-ar", "44100",
+#     output_file
+# ], timeout=5)
 
 res = subprocess.call('ls -al', shell=True) 
 st.write(res)
