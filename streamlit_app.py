@@ -88,6 +88,15 @@ def detect(model, image_path):
     # Show and save annotated image
     img.show()
     img.save('annotated_image.jpg')
+#     import streamlit as st
+#     from PIL import Image
+
+    # Load the image from a file
+    image = Image.open(annotated_image.jpg')
+
+    # Display the image
+    st.image(image, caption='Your Object Detection Image')
+
 
     return detections
 
