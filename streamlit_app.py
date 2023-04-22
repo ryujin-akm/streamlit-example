@@ -16,6 +16,8 @@ import streamlit as st
 from PIL import Image
 from PIL import Image, ImageDraw, ImageFont
 import yolov5
+import torch
+
 model = yolov5.load('fcakyon/yolov5s-v7.0')
 
 st.set_option('deprecation.showfileUploaderEncoding', False)
