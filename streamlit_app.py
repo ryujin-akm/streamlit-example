@@ -52,33 +52,33 @@ if len(audio) > 0:
 
     uploaded_file = st.file_uploader("Choose an image file", type=["jpg", "jpeg", "png"])
 
-    def detect(model, image_path):
-        # Load image
-        img = Image.open(image_path)
+#     def detect(model, image_path):
+#         # Load image
+#         img = Image.open(image_path)
 
-        # Perform inference
-        detections = model(img)
+#         # Perform inference
+#         detections = model(img)
 
-        # Get predicted class names and bounding boxes
-        class_names = detections.names
-        boxes = detections.xyxy[0]
+#         # Get predicted class names and bounding boxes
+#         class_names = detections.names
+#         boxes = detections.xyxy[0]
 
-        print(f"\n Boxes: {boxes}\n")
-        print(f"\n Detections: {detections}")
+#         print(f"\n Boxes: {boxes}\n")
+#         print(f"\n Detections: {detections}")
 
-        print(f"\nClass names: {class_names}\n")
+#         print(f"\nClass names: {class_names}\n")
 
-        ##First we need to find the objects that were detected
-        classes_detected = [class_names[detections.pred[0][i][5].to(torch.int).item()] for i in range(len(boxes))]
-        print(f"The classes detected are: {classes_detected}")
+#         ##First we need to find the objects that were detected
+#         classes_detected = [class_names[detections.pred[0][i][5].to(torch.int).item()] for i in range(len(boxes))]
+#         print(f"The classes detected are: {classes_detected}")
 
-        # Filter out the detections for objects we are interested in
-        interested_classes = ['car', 'person']
-        # interested_indices = [i for i, class_name in enumerate(class_names.values()) if class_name in interested_classes]
-        # class_names_found = [name for i, name in enumerate(class_names.values()) if name in interested_classes]
-        # label_we_can_show = list(set(interested_classes).intersection(classes_detected))
-        lable_indices_we_can_show = [i for i, x in enumerate(classes_detected) if x in interested_classes]
-        print(f"\n label _we_ can _show: {lable_indices_we_can_show}\n")
+#         # Filter out the detections for objects we are interested in
+#         interested_classes = ['car', 'person']
+#         # interested_indices = [i for i, class_name in enumerate(class_names.values()) if class_name in interested_classes]
+#         # class_names_found = [name for i, name in enumerate(class_names.values()) if name in interested_classes]
+#         # label_we_can_show = list(set(interested_classes).intersection(classes_detected))
+#         lable_indices_we_can_show = [i for i, x in enumerate(classes_detected) if x in interested_classes]
+#         print(f"\n label _we_ can _show: {lable_indices_we_can_show}\n")
         # print
         # filtered_boxes = boxes[interested_indices]
 
@@ -99,44 +99,44 @@ if len(audio) > 0:
 
         # # draw.text((10, 20), text, fill = "red", font = font)
         # Draw bounding boxes for filtered detections
-        draw = ImageDraw.Draw(img)
+#         draw = ImageDraw.Draw(img)
         # annotated_img = Image.fromarray(img)
         # draw = ImageDraw.Draw(annotated_img)
 
 
 
-        # for i, box in enumerate(boxes):
-        for i in lable_indices_we_can_show:
-          box = boxes[i]
-          draw.rectangle([(box[0], box[1]), (box[2], box[3])], outline='red', width=3)
-          text = classes_detected[i]
-          draw.text((box[0], box[1]), text, fill='red', font = ImageFont.truetype('arial.ttf', 25))
-          # draw.text([(box[0], box[1])],class_names[interested_indices[i]], fill='red', font = font)
+#         # for i, box in enumerate(boxes):
+#         for i in lable_indices_we_can_show:
+#           box = boxes[i]
+#           draw.rectangle([(box[0], box[1]), (box[2], box[3])], outline='red', width=3)
+#           text = classes_detected[i]
+#           draw.text((box[0], box[1]), text, fill='red', font = ImageFont.truetype('arial.ttf', 25))
+#           # draw.text([(box[0], box[1])],class_names[interested_indices[i]], fill='red', font = font)
 
-        # Show and save annotated image
-        img.show()
-        img.save('annotated_image.jpg')
-    #     import streamlit as st
-    #     from PIL import Image
+#         # Show and save annotated image
+#         img.show()
+#         img.save('annotated_image.jpg')
+#     #     import streamlit as st
+#     #     from PIL import Image
 
-        # Load the image from a file
-        image = Image.open('annotated_image.jpg')
+#         # Load the image from a file
+#         image = Image.open('annotated_image.jpg')
 
-        # Display the image
-        st.image(image, caption='Your Object Detection Image')
+#         # Display the image
+#         st.image(image, caption='Your Object Detection Image')
 
 
-        return detections
+#         return detections
 
-    if uploaded_file is not None:
-        # Use PIL to open the file from bytes
-        image = Image.open(uploaded_file)
+#     if uploaded_file is not None:
+#         # Use PIL to open the file from bytes
+#         image = Image.open(uploaded_file)
 
-        # Display the image
-        st.image(image, caption="Uploaded image", use_column_width=True)
+#         # Display the image
+#         st.image(image, caption="Uploaded image", use_column_width=True)
 
-        # Save the image to disk
-        filename = f"{uploaded_file.name.split('.')[0]}.png"
-        image.save(filename, format="PNG")
-        st.success(f"Saved {filename} to disk!")
-        detect(model, filename)
+#         # Save the image to disk
+#         filename = f"{uploaded_file.name.split('.')[0]}.png"
+#         image.save(filename, format="PNG")
+#         st.success(f"Saved {filename} to disk!")
+#         detect(model, filename)
