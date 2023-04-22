@@ -20,7 +20,7 @@ if len(audio) > 0:
     # To save audio to a file:
     wav_file = open("audio.mp3", "wb")
     wav_file.write(audio.tobytes())
-
+    print("---------------------We are HEre--------------------")
 
     input_file = "audio.mp3"
     output_file = "transcript.wav"
