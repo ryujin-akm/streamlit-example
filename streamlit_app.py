@@ -82,7 +82,7 @@ def detect(model, image_path):
       box = boxes[i]
       draw.rectangle([(box[0], box[1]), (box[2], box[3])], outline='red', width=3)
       text = classes_detected[i]
-      draw.text((box[0], box[1]), text, fill='red', font = ImageFont.truetype('/content/arial.ttf', 25))
+      draw.text((box[0], box[1]), text, fill='red', font = ImageFont.truetype('arial.ttf', 25))
       # draw.text([(box[0], box[1])],class_names[interested_indices[i]], fill='red', font = font)
 
     # Show and save annotated image
