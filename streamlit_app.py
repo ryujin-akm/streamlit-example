@@ -92,7 +92,7 @@ def detect(model, image_path):
 #     from PIL import Image
 
     # Load the image from a file
-    image = Image.open(annotated_image.jpg')
+    image = Image.open('annotated_image.jpg')
 
     # Display the image
     st.image(image, caption='Your Object Detection Image')
