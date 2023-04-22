@@ -28,7 +28,7 @@ output_file = "transcript.wav"
 subprocess.run([
     "ffmpeg", "-i", input_file, "-acodec", "pcm_s16le", "-ar", "44100",
     output_file
-])
+], timeout=5)
 
 res = subprocess.call('ls -al', shell=True) 
 st.write(res)
