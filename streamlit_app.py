@@ -25,32 +25,32 @@ if len(audio) > 0:
     input_file = "audio.mp3"
     output_file = "transcript.wav"
 
-    subprocess.run([
-        "ffmpeg", "-i", input_file, "-acodec", "pcm_s16le", "-ar", "44100",
-        output_file
-    ])
+subprocess.run([
+    "ffmpeg", "-i", input_file, "-acodec", "pcm_s16le", "-ar", "44100",
+    output_file
+])
 
-    # # convert mp3 file to wav
-    # sound = AudioSegment.from_mp3("audio.mp3")
-    # sound.export("transcript.wav", format="wav")
+# # convert mp3 file to wav
+# sound = AudioSegment.from_mp3("audio.mp3")
+# sound.export("transcript.wav", format="wav")
 
-    # transcribe audio file
-    AUDIO_FILE = "transcript.wav"
+# transcribe audio file
+AUDIO_FILE = "transcript.wav"
 
-    # use the audio file as the audio source
-    r = sr.Recognizer()
-    with sr.AudioFile(AUDIO_FILE) as source:
-        audio = r.record(source)  # read the entire audio file
+# use the audio file as the audio source
+r = sr.Recognizer()
+with sr.AudioFile(AUDIO_FILE) as source:
+    audio = r.record(source)  # read the entire audio file
 
-        print("Transcription: " + r.recognize_google(audio))
-    
+    print("Transcription: " + r.recognize_google(audio))
 
 
-    model = yolov5.load('fcakyon/yolov5s-v7.0')
 
-    st.set_option('deprecation.showfileUploaderEncoding', False)
+model = yolov5.load('fcakyon/yolov5s-v7.0')
 
-    uploaded_file = st.file_uploader("Choose an image file", type=["jpg", "jpeg", "png"])
+st.set_option('deprecation.showfileUploaderEncoding', False)
+
+uploaded_file = st.file_uploader("Choose an image file", type=["jpg", "jpeg", "png"])
 
 #     def detect(model, image_path):
 #         # Load image
