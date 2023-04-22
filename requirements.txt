@@ -5,3 +5,4 @@ streamlit-audiorecorder
 Pillow
 yolov5
 torch
+SpeechRecognition
