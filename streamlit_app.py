@@ -67,7 +67,7 @@ with wave.open("transcript.wav", "rb") as wave_file:
 # Add padding to the audio data
 pad_ms = 1000  # padding in milliseconds
 pad_samples = int(pad_ms * wave_file.getframerate() / 1000)
-padding = audioop.zeros(pad_samples, wave_file.getsampwidth())
+padding = bytes(pad_samples * wave_file.getsampwidth())
 audio_data = padding + audio_data + padding
 
 # Transcribe the audio data
