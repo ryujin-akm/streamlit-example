@@ -10,6 +10,26 @@ from PIL import Image, ImageDraw, ImageFont
 import yolov5
 import torch
 
+import streamlit as st
+import wave
+from audiorecorder import audiorecorder
+
+st.title("Audio Recorder")
+audio = audiorecorder("Click to record", "Recording...")
+
+if len(audio) > 0:
+    # To play audio in frontend:
+    st.audio(audio.tobytes())
+
+    # To save audio to a file:
+    with wave.open("transcript.wav", "wb") as wav_file:
+        wav_file.setnchannels(1)
+        wav_file.setsampwidth(2)
+        wav_file.setframerate(44100)
+        wav_file.writeframes(audio.tobytes())
+        st.success("Audio saved as transcript.wav")
+
+
 # st.title("Audio Recorder")
 # audio = audiorecorder("Click to record", "Recording...")
 
