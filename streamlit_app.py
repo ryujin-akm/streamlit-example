@@ -14,87 +14,107 @@ import streamlit as st
 import wave
 from audiorecorder import audiorecorder
 
-st.title("Audio Recorder")
-audio = audiorecorder("Click to record", "Recording...")
-
-if len(audio) > 0:
-    # To play audio in frontend:
-    st.audio(audio.tobytes())
-
-    # To save audio to a file:
-    with wave.open("transcript.wav", "wb") as wav_file:
-        wav_file.setnchannels(1)
-        wav_file.setsampwidth(2)
-        wav_file.setframerate(44100)
-        wav_file.writeframes(audio.tobytes())
-        st.success("Audio saved as transcript.wav")
-
-
 # st.title("Audio Recorder")
 # audio = audiorecorder("Click to record", "Recording...")
 
 # if len(audio) > 0:
 #     # To play audio in frontend:
 #     st.audio(audio.tobytes())
-    
+
 #     # To save audio to a file:
-#     wav_file = open("audio.mp3", "wb")
-#     wav_file.write(audio.tobytes())
-#     print("---------------------We are HEre--------------------")
+#     with wave.open("transcript.wav", "wb") as wav_file:
+#         wav_file.setnchannels(1)
+#         wav_file.setsampwidth(2)
+#         wav_file.setframerate(44100)
+#         wav_file.writeframes(audio.tobytes())
+#         st.success("Audio saved as transcript.wav")
 
-# input_file = "audio.mp3"
-# output_file = "transcript.wav"
 
-# subprocess.run([
-#     "ffmpeg", "-i", input_file, "-acodec", "pcm_s16le", "-ar", "44100",
-#     output_file
-# ], timeout=5)
+# # st.title("Audio Recorder")
+# # audio = audiorecorder("Click to record", "Recording...")
 
-# res = subprocess.call('ls -al', shell=True) 
-# st.write(res)
-# convert mp3 file to wav
-# sound = AudioSegment.from_mp3("audio.mp3")
-# sound.export("transcript.wav", format="wav")
-print("---------------------We are HEhjgfre--------------------")
+# # if len(audio) > 0:
+# #     # To play audio in frontend:
+# #     st.audio(audio.tobytes())
+    
+# #     # To save audio to a file:
+# #     wav_file = open("audio.mp3", "wb")
+# #     wav_file.write(audio.tobytes())
+# #     print("---------------------We are HEre--------------------")
 
-# transcribe audio file
-AUDIO_FILE = "transcript.wav"
+# # input_file = "audio.mp3"
+# # output_file = "transcript.wav"
 
-# use the audio file as the audio source
+# # subprocess.run([
+# #     "ffmpeg", "-i", input_file, "-acodec", "pcm_s16le", "-ar", "44100",
+# #     output_file
+# # ], timeout=5)
+
+# # res = subprocess.call('ls -al', shell=True) 
+# # st.write(res)
+# # convert mp3 file to wav
+# # sound = AudioSegment.from_mp3("audio.mp3")
+# # sound.export("transcript.wav", format="wav")
+# print("---------------------We are HEhjgfre--------------------")
+
+# # transcribe audio file
+# AUDIO_FILE = "transcript.wav"
+
+# # use the audio file as the audio source
+# r = sr.Recognizer()
+# # r.energy_threshold = 200
+# with sr.AudioFile(AUDIO_FILE) as source:
+#     print("I am Here")
+# #     audio_data = source.readframes(source.SAMPLE_RATE * 5)  # read audio data for 5 seconds
+#     # pad audio data to ensure its length is a multiple of sample width
+# #     sample_width = source.SAMPLE_WIDTH
+# #     audio_data += bytes(math.ceil(len(audio_data) / sample_width) * sample_width - len(audio_data))
+# #     r.adjust_for_ambient_noise(source, duration=1)
+# #     audio = r.record(source)
+# #     r.adjust_for_ambient_noise(source,duration=1)
+#     audio = r.record(source)  # read the entire audio file
+# #     text = recognize.recognize_google(audio, language='en-IN', show_all=True)
+# #     print("Transcription: " + str(r.recognize_google(audio, language = 'en-IN', show_all=True)))
+# # recognize speech using Sphinx
+# try:
+#     print("Sphinx thinks you said " + r.recognize_sphinx(audio))
+# except sr.RequestError as e:
+#     print("Sphinx error; {0}".format(e))
+# except :
+#     print("Sphinx could not understand audio")
+
+# # recognize speech using Google Speech Recognition
+# try:
+#     # for testing purposes, we're just using the default API key
+#     # to use another API key, use `r.recognize_google(audio, key="GOOGLE_SPEECH_RECOGNITION_API_KEY")`
+#     # instead of `r.recognize_google(audio)`
+#     print("Google Speech Recognition thinks you said " + r.recognize_google(audio))
+# except sr.UnknownValueError:
+#     print("Google Speech Recognition could not understand audio")
+# except sr.RequestError as e:
+#     print("Could not request results from Google Speech Recognition service; {0}".format(e))
+
+# ------------------------------------------------------------------
+import speech_recognition as sr
+
 r = sr.Recognizer()
-# r.energy_threshold = 200
-with sr.AudioFile(AUDIO_FILE) as source:
-    print("I am Here")
-#     audio_data = source.readframes(source.SAMPLE_RATE * 5)  # read audio data for 5 seconds
-    # pad audio data to ensure its length is a multiple of sample width
-#     sample_width = source.SAMPLE_WIDTH
-#     audio_data += bytes(math.ceil(len(audio_data) / sample_width) * sample_width - len(audio_data))
-#     r.adjust_for_ambient_noise(source, duration=1)
-#     audio = r.record(source)
-#     r.adjust_for_ambient_noise(source,duration=1)
-    audio = r.record(source)  # read the entire audio file
-#     text = recognize.recognize_google(audio, language='en-IN', show_all=True)
-#     print("Transcription: " + str(r.recognize_google(audio, language = 'en-IN', show_all=True)))
-# recognize speech using Sphinx
-try:
-    print("Sphinx thinks you said " + r.recognize_sphinx(audio))
-except sr.RequestError as e:
-    print("Sphinx error; {0}".format(e))
-except :
-    print("Sphinx could not understand audio")
 
-# recognize speech using Google Speech Recognition
+# record audio
+with sr.Microphone() as source:
+    print("Say something!")
+    audio = r.listen(source)
+
+# transcribe audio
 try:
-    # for testing purposes, we're just using the default API key
-    # to use another API key, use `r.recognize_google(audio, key="GOOGLE_SPEECH_RECOGNITION_API_KEY")`
-    # instead of `r.recognize_google(audio)`
-    print("Google Speech Recognition thinks you said " + r.recognize_google(audio))
+    text = r.recognize_google(audio)
+    print(f"You said: {text}")
 except sr.UnknownValueError:
-    print("Google Speech Recognition could not understand audio")
+    print("Could not understand audio")
 except sr.RequestError as e:
-    print("Could not request results from Google Speech Recognition service; {0}".format(e))
-
-
+    print(
+        f"Could not request results from Google Speech Recognition service; {e}"
+    )
+# ------------------------------------------------------------------
 
 model = yolov5.load('fcakyon/yolov5s-v7.0')
 
