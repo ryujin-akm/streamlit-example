@@ -70,13 +70,17 @@ pad_samples = int(pad_ms * wave_file.getframerate() / 1000)
 padding = bytes(pad_samples * wave_file.getsampwidth())
 audio_data = padding + audio_data + padding
 
+# Save the audio data to a file
+with open("padded_transcript.wav", "wb") as f:
+    f.write(audio_data)
+    
 # Transcribe the audio data
 r = sr.Recognizer()
-with sr.AudioFile(audio_data) as source:
+with sr.AudioFile("padded_transcript.wav") as source:
     r.adjust_for_ambient_noise(source, duration=1)
     audio = r.record(source)
-transcript = r.recognize_google(audio)
-print(transcript)
+    transcript = r.recognize_google(audio)
+    print(transcript)
 print("------------------ddddddddddddddddddddddddddddd---We are HEhjgfre--------------------")
 # transcribe audio file
 AUDIO_FILE = "transcript.wav"
