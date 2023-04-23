@@ -65,13 +65,13 @@ r = sr.Recognizer()
 # r.energy_threshold = 200
 with sr.AudioFile(AUDIO_FILE) as source:
     print("I am Here")
-    audio_data = source.readframes(source.SAMPLE_RATE * 5)  # read audio data for 5 seconds
+#     audio_data = source.readframes(source.SAMPLE_RATE * 5)  # read audio data for 5 seconds
     # pad audio data to ensure its length is a multiple of sample width
-    sample_width = source.SAMPLE_WIDTH
-    audio_data += bytes(math.ceil(len(audio_data) / sample_width) * sample_width - len(audio_data))
+#     sample_width = source.SAMPLE_WIDTH
+#     audio_data += bytes(math.ceil(len(audio_data) / sample_width) * sample_width - len(audio_data))
 #     r.adjust_for_ambient_noise(source, duration=1)
 #     audio = r.record(source)
-    r.adjust_for_ambient_noise(source,duration=1)
+#     r.adjust_for_ambient_noise(source,duration=1)
     audio = r.record(source)  # read the entire audio file
 #     text = recognize.recognize_google(audio, language='en-IN', show_all=True)
 #     print("Transcription: " + str(r.recognize_google(audio, language = 'en-IN', show_all=True)))
