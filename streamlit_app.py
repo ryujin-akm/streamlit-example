@@ -23,10 +23,10 @@ if len(audio) > 0:
 
     # To save audio to a file:
     with wave.open("transcript.wav", "wb") as wav_file:
-#         wav_file.setnchannels(1)
-#         wav_file.setsampwidth(2)
-#         wav_file.setframerate(44100)
-#         wav_file.writeframes(audio.tobytes())
+        wav_file.setnchannels(1)
+        wav_file.setsampwidth(2)
+        wav_file.setframerate(44100)
+        wav_file.writeframes(audio.tobytes())
         st.success("Audio saved as transcript.wav")
 
 
