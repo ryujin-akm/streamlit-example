@@ -61,9 +61,10 @@ AUDIO_FILE = "transcript.wav"
 
 # use the audio file as the audio source
 r = sr.Recognizer()
+# r.energy_threshold = 200
 with sr.AudioFile(AUDIO_FILE) as source:
     print("I am Here")
-    r.adjust_for_ambient_noise(source,duration=2)
+    r.adjust_for_ambient_noise(source,duration=1)
     audio = r.record(source)  # read the entire audio file
 #     text = recognize.recognize_google(audio, language='en-IN', show_all=True)
 #     print("Transcription: " + str(r.recognize_google(audio, language = 'en-IN', show_all=True)))
