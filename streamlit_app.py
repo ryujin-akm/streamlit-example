@@ -23,10 +23,10 @@ if len(audio) > 0:
 
     # To save audio to a file:
     with wave.open("transcript.wav", "wb") as wav_file:
-        wav_file.setnchannels(1)
-        wav_file.setsampwidth(2)
-        wav_file.setframerate(44100)
-        wav_file.writeframes(audio.tobytes())
+#         wav_file.setnchannels(1)
+#         wav_file.setsampwidth(2)
+#         wav_file.setframerate(44100)
+#         wav_file.writeframes(audio.tobytes())
         st.success("Audio saved as transcript.wav")
 
 
@@ -57,31 +57,6 @@ if len(audio) > 0:
 # sound.export("transcript.wav", format="wav")
 print("---------------------We are HEhjgfre--------------------")
 
-import wave
-import audioop
-
-# Read audio data from file
-with wave.open("transcript.wav", "rb") as wave_file:
-    audio_data = wave_file.readframes(wave_file.getnframes())
-
-# Add padding to the audio data
-pad_ms = 1000  # padding in milliseconds
-pad_samples = int(pad_ms * wave_file.getframerate() / 1000)
-padding = bytes(pad_samples * wave_file.getsampwidth())
-audio_data = padding + audio_data + padding
-
-# Save the audio data to a file
-with open("padded_transcript.wav", "wb") as f:
-    f.write(audio_data)
-    
-# Transcribe the audio data
-r = sr.Recognizer()
-with sr.AudioFile("padded_transcript.wav") as source:
-    r.adjust_for_ambient_noise(source, duration=1)
-    audio = r.record(source)
-    transcript = r.recognize_google(audio)
-    print(transcript)
-print("------------------ddddddddddddddddddddddddddddd---We are HEhjgfre--------------------")
 # transcribe audio file
 AUDIO_FILE = "transcript.wav"
 
