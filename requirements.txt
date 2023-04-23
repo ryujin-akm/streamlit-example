@@ -7,3 +7,4 @@ yolov5
 torch
 SpeechRecognition
 pydub
+pocketsphinx
