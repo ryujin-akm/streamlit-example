@@ -65,7 +65,7 @@ with sr.AudioFile(AUDIO_FILE) as source:
     print("I am Here")
     audio = r.record(source)  # read the entire audio file
 
-    print("Transcription: " + r.recognize_google(audio))
+    print("Transcription: " + r.recognize_google(audio, language = 'en-IN', show_all=True))
 
 
 
