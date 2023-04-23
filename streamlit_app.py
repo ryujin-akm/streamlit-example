@@ -56,6 +56,28 @@ if len(audio) > 0:
 # sound = AudioSegment.from_mp3("audio.mp3")
 # sound.export("transcript.wav", format="wav")
 print("---------------------We are HEhjgfre--------------------")
+
+import wave
+import audioop
+
+# Read audio data from file
+with wave.open("transcript.wav", "rb") as wave_file:
+    audio_data = wave_file.readframes(wave_file.getnframes())
+
+# Add padding to the audio data
+pad_ms = 1000  # padding in milliseconds
+pad_samples = int(pad_ms * wave_file.getframerate() / 1000)
+padding = audioop.zeros(pad_samples, wave_file.getsampwidth())
+audio_data = padding + audio_data + padding
+
+# Transcribe the audio data
+r = sr.Recognizer()
+with sr.AudioFile(audio_data) as source:
+    r.adjust_for_ambient_noise(source, duration=1)
+    audio = r.record(source)
+transcript = r.recognize_google(audio)
+print(transcript)
+print("------------------ddddddddddddddddddddddddddddd---We are HEhjgfre--------------------")
 # transcribe audio file
 AUDIO_FILE = "transcript.wav"
 
