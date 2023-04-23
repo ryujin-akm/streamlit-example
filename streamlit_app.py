@@ -78,10 +78,10 @@ with sr.AudioFile(AUDIO_FILE) as source:
 # recognize speech using Sphinx
 try:
     print("Sphinx thinks you said " + r.recognize_sphinx(audio))
-except:
-    print("Sphinx could not understand audio")
 except sr.RequestError as e:
     print("Sphinx error; {0}".format(e))
+except :
+    print("Sphinx could not understand audio")
 
 # recognize speech using Google Speech Recognition
 try:
