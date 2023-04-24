@@ -1,1 +1,10 @@
-
+altair
+pandas
+streamlit
+streamlit-audiorecorder
+Pillow
+yolov5
+torch
+SpeechRecognition
+pydub
+pocketsphinx
