@@ -135,8 +135,7 @@ if len(audio) > 0:
         # label_we_can_show = list(set(interested_classes).intersection(classes_detected))
         lable_indices_we_can_show = [i for i, x in enumerate(classes_detected) if x in interested_classes]
         print(f"\n label _we_ can _show: {lable_indices_we_can_show}\n")
-        print
-        filtered_boxes = boxes[interested_indices]
+        
 
 
         #########################################
@@ -154,10 +153,10 @@ if len(audio) > 0:
 
 
         # draw.text((10, 20), text, fill = "red", font = font)
-        Draw bounding boxes for filtered detections
+#         Draw bounding boxes for filtered detections
         draw = ImageDraw.Draw(img)
-        annotated_img = Image.fromarray(img)
-        draw = ImageDraw.Draw(annotated_img)
+#         annotated_img = Image.fromarray(img)
+#         draw = ImageDraw.Draw(annotated_img)
 
 
 
